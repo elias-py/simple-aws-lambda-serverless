@@ -7,14 +7,7 @@ const updateTodo = async (event) => {
   const dynamodb = new AWS.DynamoDB.DocumentClient();
 
   const { completed } = event.body;
-  const { id } = event.pathParamameters;
-
-  const newTodo = {
-    id,
-    todo,
-    createdAt,
-    completed: false,
-  };
+  const { id } = event.pathParameters;
 
   await dynamodb
     .update({

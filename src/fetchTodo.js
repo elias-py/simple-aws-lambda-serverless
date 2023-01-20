@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 
 const fetchTodo = async (event) => {
   const dynamodb = new AWS.DynamoDB.DocumentClient();
-  const { id } = event.pathParamameters;
+  const { id } = event.pathParameters;
 
   let todo;
   try {
@@ -11,7 +11,7 @@ const fetchTodo = async (event) => {
       .get({ TableName: 'TodoTable', Key: { id } })
       .promise();
 
-    todo = result.Items;
+    todo = result.Item;
   } catch (error) {
     console.log(error);
   }
